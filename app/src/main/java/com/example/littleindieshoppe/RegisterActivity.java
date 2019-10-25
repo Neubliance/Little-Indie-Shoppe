@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(phone)) Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
         else if (TextUtils.isEmpty(password)) Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
         else {
-            loadingBar.setTitle("Create Account");
+            loadingBar.setTitle("Creating Account");
             loadingBar.setMessage("Please wait while we finalize your account");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
