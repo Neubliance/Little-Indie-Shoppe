@@ -23,7 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputPhoneNumber, inputPassword;
     private Button loginButton;
     private ProgressDialog loadingBar;
-    private String parentDbName;
+
+    private String parentDbName = "Users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         loadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this, "Incoorect Password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
