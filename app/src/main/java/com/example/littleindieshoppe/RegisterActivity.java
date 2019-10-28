@@ -33,9 +33,11 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         createAccountButton = (Button) findViewById(R.id.register_btn);
+
         inputName = (EditText) findViewById(R.id.register_username_input);
         inputPhoneNumber = (EditText) findViewById(R.id.register_phone_number_input);
         inputPassword = (EditText) findViewById(R.id.register_password_input);
+
         loadingBar = new ProgressDialog(this);
 
         createAccountButton.setOnClickListener(new View.OnClickListener() {
