@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         loadingBar = new ProgressDialog(this);
 
+        Paper.init(this);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +51,55 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        String userPhoneKey = Paper.book().read(Prevalent.userPhoneKey);
+        String userPasswordKey = Paper.book().read(Prevalent.userPasswordKey);
+
+        if (!TextUtils.isEmpty(userPhoneKey) && !TextUtils.isEmpty(userPasswordKey)) {
+            allowAccess(userPhoneKey, userPasswordKey);
+
+            loadingBar.setTitle("Already Logged In");
+            loadingBar.setMessage("Please Wait");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+        }
+    }
+
+    private void allowAccess(final String phone, final String password) {
+        final DatabaseReference rootRef;
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("Users").child(phone).exists()) {
+                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+
+                    if (usersData.getPhone().equals(phone)) {
+                        if (usersData.getPassword().equals(password)) {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                    else {
+                        loadingBar.dismiss();
+                        Toast.makeText(MainActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "The Number " + phone + " Does Not Belong To An Account", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
