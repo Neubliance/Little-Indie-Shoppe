@@ -1,9 +1,9 @@
 package com.example.littleindieshoppe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminAddNewProductActivity extends AppCompatActivity {
 

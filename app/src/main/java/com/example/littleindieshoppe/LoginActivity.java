@@ -1,8 +1,5 @@
 package com.example.littleindieshoppe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.littleindieshoppe.Model.Users;
 import com.example.littleindieshoppe.Prevalent.Prevalent;
@@ -38,16 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginButton = (Button) findViewById(R.id.login_btn);
+        loginButton = findViewById(R.id.login_btn);
 
-        inputPassword = (EditText) findViewById(R.id.login_password_input);
-        inputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input);
-        adminLink = (TextView) findViewById(R.id.admin_panel_link);
-        notAdminLink = (TextView) findViewById(R.id.not_admin_panel_link);
+        inputPassword = findViewById(R.id.login_password_input);
+        inputPhoneNumber = findViewById(R.id.login_phone_number_input);
+        adminLink = findViewById(R.id.admin_panel_link);
+        notAdminLink = findViewById(R.id.not_admin_panel_link);
 
         loadingBar = new ProgressDialog(this);
 
-        chkBoxRememberMe = (CheckBox) findViewById(R.id.remember_me_chkb);
+        chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
         Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +84,10 @@ public class LoginActivity extends AppCompatActivity {
         String phone = inputPhoneNumber.getText().toString();
         String password = inputPassword.getText().toString();
 
-        if (TextUtils.isEmpty(phone)) Toast.makeText(this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
-        else if (TextUtils.isEmpty(password)) Toast.makeText(this, "Enter Your Password", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(phone))
+            Toast.makeText(this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(password))
+            Toast.makeText(this, "Enter Your Password", Toast.LENGTH_SHORT).show();
         else {
             loadingBar.setTitle("Login");
             loadingBar.setMessage("Accessing Account");
@@ -119,8 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(LoginActivity.this, AdminAddNewProductActivity.class);
                                 startActivity(intent);
-                            }
-                            else if (parentDbName.equals("Users")) {
+                            } else if (parentDbName.equals("Users")) {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
@@ -128,13 +129,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         loadingBar.dismiss();
                         Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(LoginActivity.this, "The Number " + phone + " Does Not Belong To An Account", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }

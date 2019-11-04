@@ -1,8 +1,5 @@
 package com.example.littleindieshoppe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,11 +32,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        createAccountButton = (Button) findViewById(R.id.register_btn);
+        createAccountButton = findViewById(R.id.register_btn);
 
-        inputName = (EditText) findViewById(R.id.register_username_input);
-        inputPhoneNumber = (EditText) findViewById(R.id.register_phone_number_input);
-        inputPassword = (EditText) findViewById(R.id.register_password_input);
+        inputName = findViewById(R.id.register_username_input);
+        inputPhoneNumber = findViewById(R.id.register_phone_number_input);
+        inputPassword = findViewById(R.id.register_password_input);
 
         loadingBar = new ProgressDialog(this);
 
@@ -53,9 +53,12 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = inputPhoneNumber.getText().toString();
         String password = inputPassword.getText().toString();
 
-        if (TextUtils.isEmpty(name)) Toast.makeText(this, "Enter Your Name", Toast.LENGTH_SHORT).show();
-        else if (TextUtils.isEmpty(phone)) Toast.makeText(this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
-        else if (TextUtils.isEmpty(password)) Toast.makeText(this, "Enter Your Password", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(name))
+            Toast.makeText(this, "Enter Your Name", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(phone))
+            Toast.makeText(this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(password))
+            Toast.makeText(this, "Enter Your Password", Toast.LENGTH_SHORT).show();
         else {
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("Creating Account");
@@ -73,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!(dataSnapshot.child("Users").child(phone).exists())){
+                if (!(dataSnapshot.child("Users").child(phone).exists())) {
                     HashMap<String, Object> userDataMap = new HashMap<>();
                     userDataMap.put("phone", phone);
                     userDataMap.put("password", password);
@@ -88,15 +91,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(intent);
-                            }
-                            else {
+                            } else {
                                 loadingBar.dismiss();
                                 Toast.makeText(RegisterActivity.this, "An Unexpected Error Has Occurred, Try Again In A Few Minutes", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(RegisterActivity.this, "The Phone Number " + phone + " Already Exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Try Again With A Different Number", Toast.LENGTH_SHORT).show();

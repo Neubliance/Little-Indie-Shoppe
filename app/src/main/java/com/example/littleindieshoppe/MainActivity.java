@@ -1,8 +1,5 @@
 package com.example.littleindieshoppe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.littleindieshoppe.Model.Users;
 import com.example.littleindieshoppe.Prevalent.Prevalent;
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
-        loginButton = (Button) findViewById(R.id.main_login_btn);
+        joinNowButton = findViewById(R.id.main_join_now_btn);
+        loginButton = findViewById(R.id.main_login_btn);
 
         loadingBar = new ProgressDialog(this);
 
@@ -85,13 +85,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
                         }
-                    }
-                    else {
+                    } else {
                         loadingBar.dismiss();
                         Toast.makeText(MainActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "The Number " + phone + " Does Not Belong To An Account", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
