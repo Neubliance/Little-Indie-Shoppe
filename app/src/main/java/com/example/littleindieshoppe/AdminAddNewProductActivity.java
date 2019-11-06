@@ -6,6 +6,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminAddNewProductActivity extends AppCompatActivity {
+    private String categoryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +15,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Welcome Retailer", Toast.LENGTH_SHORT).show();
 
+        categoryName = getIntent().getExtras().get("category").toString();
 
+        Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
     }
 }
