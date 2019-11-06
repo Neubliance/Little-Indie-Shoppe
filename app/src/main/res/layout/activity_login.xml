@@ -98,7 +98,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="23dp"
-        android:text="I'm an Admin"
+        android:text="I'm a Retailer"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -112,7 +112,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="237dp"
         android:layout_marginBottom="80dp"
-        android:text="I'm Not An Admin"
+        android:text="I'm Not A Retailer"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"

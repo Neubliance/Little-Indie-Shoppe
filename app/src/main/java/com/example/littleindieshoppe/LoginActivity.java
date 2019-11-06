@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         adminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginButton.setText("Admin Login");
+                loginButton.setText("Retailer Login");
                 adminLink.setVisibility(View.INVISIBLE);
                 notAdminLink.setVisibility(View.VISIBLE);
 
