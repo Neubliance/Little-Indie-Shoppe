@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         adminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inputPhoneNumber.setHint("Retailer ID Number");
                 loginButton.setText("Retailer Login");
                 adminLink.setVisibility(View.INVISIBLE);
                 notAdminLink.setVisibility(View.VISIBLE);
@@ -71,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         notAdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inputPhoneNumber.setHint("Phone Number");
                 loginButton.setText("Login");
                 adminLink.setVisibility(View.VISIBLE);
                 notAdminLink.setVisibility(View.INVISIBLE);
@@ -126,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                                 loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }
                         }
