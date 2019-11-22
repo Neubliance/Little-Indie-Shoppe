@@ -38,10 +38,10 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
 
+    RecyclerView.LayoutManager layoutManager;
     private AppBarConfiguration mAppBarConfiguration;
     private DatabaseReference productsRef;
     private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
