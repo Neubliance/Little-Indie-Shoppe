@@ -1,21 +1,20 @@
 package com.example.littleindieshoppe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.littleindieshoppe.Model.Cart;
 import com.example.littleindieshoppe.Prevalent.Prevalent;
@@ -26,8 +25,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -44,8 +41,6 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        nextProcessButton = findViewById(R.id.next_process_btn);
     }
 
     @Override
@@ -66,7 +61,7 @@ public class CartActivity extends AppCompatActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CharSequence options[] = new CharSequence[]
+                        CharSequence[] options = new CharSequence[]
                                 {
                                         "Edit",
                                         "Remove"
